@@ -264,21 +264,21 @@ git clone https://github.com/jcn50/pokitoki.git
 5. Start the bot:
 
 ```bash
-docker compose up --build --detach
+docker-compose up --build --detach
 ```
 
 To stop the bot:
 
 ```bash
-docker compose stop
+docker-compose stop
 ```
 
 To update the bot to a new version:
 
 ```bash
-docker compose down
+docker-compose down
 git pull
-docker compose up --build --detach
+docker-compose up --build --detach
 ```
 
 ## Development setup
