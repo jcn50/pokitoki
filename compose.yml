@@ -5,8 +5,11 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
         volumes:
             - ./config.yml:/code/config.yml
             - data:/code/data
+
 volumes:
     data:
