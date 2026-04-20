@@ -256,7 +256,7 @@ message_limit:
 3. Clone the repo to the server:
 
 ```bash
-git clone https://github.com/nalgeon/pokitoki.git
+git clone https://github.com/jcn50/pokitoki.git
 ```
 
 4. Copy `config.example.yml` to `config.yml` and specify your tokens there. Add yourself to the `telegram.usernames` property, otherwise the bot will be available to everyone.
@@ -320,7 +320,7 @@ Use [Black](https://black.readthedocs.io/en/stable/) for code formatting. Be sur
 
 ## Changelog
 
-For feature history, see [releases](https://github.com/nalgeon/pokitoki/releases).
+For feature history, see [releases](https://github.com/jcn50/pokitoki/releases).
 
 ## Credits
 
