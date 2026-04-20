@@ -260,8 +260,17 @@ git clone https://github.com/jcn50/pokitoki.git
 ```
 
 4. Copy `config.example.yml` to `config.yml` and specify your tokens there. Add yourself to the `telegram.usernames` property, otherwise the bot will be available to everyone.
+IF your bot and AI are running on the same server, replace this line in the `compose.yml` file as appropriate:
+```yaml
+        extra_hosts:
+            - "REPLACE_WITH_YOUR_DOMAIN.COM:YOUR_PUBLIC_IP"
+```
+do not forget to add this file to your git ignore to avoid a new git pull update, run this once from the appropriate location:
+```bash
+echo -e "\n# running on local server\ncompose.yml">>.gitignore
+```
 
-5. Start the bot:
+6. Start the bot:
 
 ```bash
 docker-compose up --build --detach
