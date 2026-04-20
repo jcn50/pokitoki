@@ -4,6 +4,8 @@ import logging
 import sys
 import textwrap
 import time
+import asyncio
+import contextlib
 
 from telegram import Chat, Message, Update
 from telegram.ext import (
@@ -141,18 +143,31 @@ def with_message_limit(func):
 
     return wrapper
 
-
+# keep the typing status regardless of the AI model speed/time to answer back
+async def _keep_typing(message: Message) -> None:
+    while True:
+        await asyncio.sleep(4)
+        await message.chat.send_action(
+            action="typing",
+            message_thread_id=message.message_thread_id,
+        )
+        
 @with_message_limit
 async def reply_to(
     update: Update, message: Message, context: CallbackContext, question: str
 ) -> None:
     """Replies to a specific question."""
-    await message.chat.send_action(action="typing", message_thread_id=message.message_thread_id)
+    await message.chat.send_action(
+        action="typing",
+        message_thread_id=message.message_thread_id,
+    )
 
+    typing_task = asyncio.create_task(_keep_typing(message))
     try:
         chat = ChatData(context.chat_data)
         model = chat.model or config.openai.model
         asker = askers.create(model=model, question=question)
+
         if message.chat.type == Chat.PRIVATE and message.forward_date:
             # this is a forwarded message, don't answer yet
             answer = "This is a forwarded message. What should I do with it?"
@@ -162,14 +177,23 @@ async def reply_to(
         user = UserData(context.user_data)
         user.messages.add(question, answer)
         logger.debug(user.messages)
-        await asker.reply(message, context, answer)
 
     except Exception as exc:
         class_name = f"{exc.__class__.__module__}.{exc.__class__.__qualname__}"
         error_text = f"{class_name}: {exc}"
         logger.error("Failed to answer: %s", error_text)
+
         text = textwrap.shorten(f"⚠️ {error_text}", width=255, placeholder="...")
         await message.reply_text(text)
+
+    else:
+        await asker.reply(message, context, answer)
+
+    finally:
+        typing_task.cancel()
+        with contextlib.suppress(asyncio.CancelledError):
+            await typing_task
+
 
 
 async def _ask_question(
