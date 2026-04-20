@@ -39,7 +39,7 @@ class TextAsker(Asker):
 
     async def reply(self, message: Message, context: CallbackContext, answer: str) -> None:
         """Replies with an answer from AI."""
-        html_answer = markdown.to_html(answer)
+        html_answer = markdown.to_html(re.sub(r'<think>.*?</think>', '', answer, flags=re.DOTALL)) # remove the <think> tags for the qwen models & others
         if len(html_answer) <= MessageLimit.MAX_TEXT_LENGTH:
             await message.reply_text(html_answer, parse_mode=ParseMode.HTML)
             return
