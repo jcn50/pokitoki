@@ -6,7 +6,7 @@ services:
             context: .
             dockerfile: Dockerfile
         extra_hosts:
-            - "REPLACE_WITH_YOUR_DOMAIN.COM:host-gateway"
+            - "REPLACE_WITH_YOUR_DOMAIN.COM:YOUR_PUBLIC_IP"
         volumes:
             - ./config.yml:/code/config.yml
             - data:/code/data
