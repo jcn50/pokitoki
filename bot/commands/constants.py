@@ -10,7 +10,7 @@ Built-in commands:
 AI shortcuts:
 {shortcuts}
 
-[More features →](https://github.com/nalgeon/pokitoki#readme)
+[More features →](https://github.com/jcn50/pokitoki#readme)
 """
 
 PRIVACY_MESSAGE = (
