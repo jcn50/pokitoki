@@ -10,10 +10,12 @@ telegram:
 
     # The list of Telegram usernames allowed to chat with the bot.
     # If empty, the bot will be available to anyone.
+    # WARNING: do NOT use the leading "@"
     usernames: []
 
     # The list of Telegram usernames allowed to change bot settings.
     # If empty, then no one is allowed to change the settings.
+    # WARNING: do NOT use the leading "@"
     admins: []
 
     # The list of Telegram group ids, whose members are allowed to chat with the bot.
