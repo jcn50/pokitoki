@@ -6,7 +6,7 @@ schema_version: 3
 # Telegram settings.
 telegram:
     # Telegram Bot API token.
-    token: ""
+    token: "" # no need for the double-quotes
 
     # The list of Telegram usernames allowed to chat with the bot.
     # If empty, the bot will be available to anyone.
