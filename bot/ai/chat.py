@@ -4,7 +4,7 @@ import logging
 import httpx
 from bot.config import config
 
-client = httpx.AsyncClient(timeout=60.0)
+client = httpx.AsyncClient(timeout=300.0) # increase to 5 min waiting time
 logger = logging.getLogger(__name__)
 
 # Known models and their context windows
