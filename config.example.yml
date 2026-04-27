@@ -1,13 +1,12 @@
 # Bot configuration parameters.
-
-# customize your message in case of permission error
-permission_denied_message: "Sorry, I don't know you. I have a permission problem, please ask jcn50 @ https://github.com/jcn50/pokitoki"
-
 # Config schema version. Increments for backward-incompatible changes.
 schema_version: 3
 
 # Telegram settings.
 telegram:
+    # customize your message in case of permission error
+    permission_denied_message: "Sorry, I don't know you. I have a permission problem, please ask jcn50 @ https://github.com/jcn50/pokitoki"
+
     # Telegram Bot API token.
     token: "" # no need for the double-quotes
 
