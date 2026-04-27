@@ -5,6 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        network_mode: "host"
         extra_hosts:
             - "host.docker.internal:host-gateway"
             # - "REPLACE_WITH_YOUR_DOMAIN.COM:YOUR_PUBLIC_IP" # uncomment and replace the vars with your server HOSTNAME + IP if pokitoki is running on the same server
