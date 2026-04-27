@@ -14,7 +14,7 @@ class StartCommand:
 
     async def __call__(self, update: Update, context: CallbackContext) -> None:
         if update.effective_user.username not in config.telegram.usernames:
-            text = config.permission_denied_message
+            text = config.telegram.permission_denied_message
             await update.message.reply_text(text)
             return
 
