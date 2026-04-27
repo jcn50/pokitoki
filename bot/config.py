@@ -9,6 +9,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Telegram:
+    permission_denied_message: str
     token: str
     usernames: list
     admins: list
@@ -107,6 +108,7 @@ class Config:
 
         # Telegram settings.
         self.telegram = Telegram(
+            permission_denied_message=src["telegram"].get("permission_denied_message")
             token=src["telegram"]["token"],
             usernames=src["telegram"].get("usernames") or [],
             admins=src["telegram"].get("admins") or [],
